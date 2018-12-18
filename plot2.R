@@ -1,5 +1,5 @@
 # The script reads data from UCI Individual household electric power consumption Data Set, 
-# and generates a histogram showing the household global active power usage over a 2-day 
+# and generates a line chart showing the household global active power usage over a 2-day 
 # period from 2007-02-01 to 2007-02-02.
 
 # downloads flat file to the current directory if necessary
@@ -23,9 +23,9 @@ df$datetime <- as.POSIXct(strptime(df$datetime, format = "%d/%m/%Y-%H:%M:%S"))
 df <- df[, c("datetime", names(df)[-c(1, 2, length(names(df)))])]
 
 # generates graph, and saves to the preferable graphics device
-imageName <- "plot1.png"
+imageName <- "plot2.png"
 png(imageName, width = 480, height = 480)
-with(df, hist(globalActivePower, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)"))
+with(df, plot(globalActivePower ~ as.POSIXct(datetime), type = "l", xlab = "", ylab = "Global Active Power (kilowatts)"))
 dev.off()
 
 # prompts success message, and removes temporary objects
