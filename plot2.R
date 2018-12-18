@@ -25,7 +25,7 @@ df <- df[, c("datetime", names(df)[-c(1, 2, length(names(df)))])]
 # generates graph, and saves to the preferable graphics device
 imageName <- "plot2.png"
 png(imageName, width = 480, height = 480)
-with(df, plot(globalActivePower ~ as.POSIXct(datetime), type = "l", xlab = "", ylab = "Global Active Power (kilowatts)"))
+with(df, plot(globalActivePower ~ datetime, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)"))
 dev.off()
 
 # prompts success message, and removes temporary objects
